@@ -12,9 +12,7 @@ public class CompliantNode implements Node {
     private int numRounds;
 
     private boolean[] followees;
-
-    private Set<Transaction> pendingTransactions;
-
+    private Set<Transaction> proposedTransactions;
     private boolean[] blackListed;
 
     public CompliantNode(double p_graph, double p_malicious, double p_txDistribution, int numRounds) {
@@ -29,13 +27,13 @@ public class CompliantNode implements Node {
         this.blackListed = new boolean[followees.length];
     }
 
-    public void setPendingTransaction(Set<Transaction> pendingTransactions) {
-        this.pendingTransactions = pendingTransactions;
+    public void setPendingTransaction(Set<Transaction> proposedTransactions) {
+        this.proposedTransactions = proposedTransactions;
     }
 
     public Set<Transaction> sendToFollowers() {
-        Set<Transaction> toSend = new HashSet<>(pendingTransactions);
-        pendingTransactions.clear();
+        Set<Transaction> toSend = new HashSet<>(proposedTransactions);
+        proposedTransactions.clear();
         return toSend;
     }
 
@@ -47,7 +45,7 @@ public class CompliantNode implements Node {
         }
         for (Candidate c : candidates) {
             if (!blackListed[c.sender]) {
-                pendingTransactions.add(c.tx);
+                proposedTransactions.add(c.tx);
             }
         }
     }
