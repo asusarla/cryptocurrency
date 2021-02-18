@@ -95,8 +95,8 @@ public class TxHandler {
           legitTransaction.toArray(resp);
           return resp; // Return array of valid tx
     }
-    public UTXOPool getUTXOPool(Transaction[] possibleTxs) {
-	    
+    public UTXOPool getUTXOPool() {
+	    return utxoPool;
     }
 
     /****----- Private methods -----******/
