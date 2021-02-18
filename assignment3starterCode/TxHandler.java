@@ -95,6 +95,9 @@ public class TxHandler {
           legitTransaction.toArray(resp);
           return resp; // Return array of valid tx
     }
+    public UTXOPool getUTXOPool(Transaction[] possibleTxs) {
+	    
+    }
 
     /****----- Private methods -----******/
     private boolean verifySignatureOfCoinBeingUsed(Transaction tx, int index, Transaction.Input input) {
